@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="bn" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Polash AI OS 2.0 — a private, offline-ready personal operating system: 36 curated AI tools, practical insights, tasks, notes and a focus timer in one fast workspace." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="color-scheme" content="dark light" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Polash AI OS 2.0 — Build • Learn • Earn • Grow" />
+  <meta property="og:description" content="Your private AI workspace: 36 curated tools, insights, tasks, notes and a focus timer. No build step, no tracking." />
+  <meta property="og:locale" content="bn_BD" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b1020'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial' font-size='38' font-weight='bold' fill='%23f6c453'%3EP%3C/text%3E%3C/svg%3E" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhance.css" />
+  <title>Polash AI OS 2.0 — Build • Learn • Earn • Grow</title>
+  <script>
+    try {
+      var savedTheme = localStorage.getItem("polash-os:theme");
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (error) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#appView" data-en="Skip to content" data-bn="মূল অংশে যান">মূল অংশে যান</a>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Sidebar">
+      <a class="brand" href="#home" aria-label="Polash AI OS">
+        <span class="brand-mark">P</span>
+        <span class="brand-name">Polash <b>AI OS</b><small>v2.0</small></span>
+      </a>
+
+      <button class="sb-toggle" id="sbToggle" type="button" aria-label="Collapse sidebar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/><path d="M20 5v14"/></svg>
+        <span class="sb-toggle-label" data-en="Collapse" data-bn="সংকুচিত">সংকুচিত</span>
+      </button>
+
+      <nav class="nav-scroll" aria-label="Main navigation">
+        <p class="nav-group" data-en="Main" data-bn="মূল">মূল</p>
+
+        <a class="nav-item" href="#home" data-route="home">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg>
+          <span data-en="Dashboard" data-bn="ড্যাশবোর্ড">ড্যাশবোর্ড</span>
+          <span class="kbd">1</span>
+        </a>
+
+        <a class="nav-item" href="#tools" data-route="tools">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg>
+          <span data-en="AI Tools" data-bn="AI টুলস">AI টুলস</span>
+          <span class="kbd">2</span>
+        </a>
+
+        <a class="nav-item" href="#insights" data-route="insights">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h9l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/><path d="M13 4v6h6"/><path d="M8 14h6M8 17.5h4"/></svg>
+          <span data-en="Insights" data-bn="ইনসাইটস">ইনসাইটস</span>
+          <span class="kbd">3</span>
+        </a>
+
+        <p class="nav-group" data-en="Workspace" data-bn="ওয়ার্কস্পেস">ওয়ার্কস্পেস</p>
+
+        <a class="nav-item" href="#workspace" data-route="workspace" data-tab="tasks">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5 6 8.5l3.5-4"/><path d="M12 7h8"/><path d="M4 13.5 6 15.5l3.5-4"/><path d="M12 14h8"/><path d="M12 21h5"/></svg>
+          <span data-en="Tasks" data-bn="টাস্ক">টাস্ক</span>
+          <span class="nav-badge" id="navTaskBadge">0</span>
+        </a>
+
+        <a class="nav-item" href="#workspace" data-route="workspace" data-tab="notes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l4 4V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z"/><path d="M14.5 3.5V8H19"/><path d="M8.5 12.5h7M8.5 16.5h5"/></svg>
+          <span data-en="Notes" data-bn="নোট">নোট</span>
+        </a>
+
+        <a class="nav-item" href="#workspace" data-route="workspace" data-tab="focus">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4.5l3 2"/><path d="M9 2.5h6"/></svg>
+          <span data-en="Focus" data-bn="ফোকাস">ফোকাস</span>
+        </a>
+
+        <p class="nav-group" data-en="Connect" data-bn="যোগাযোগ">যোগাযোগ</p>
+
+        <a class="nav-item" href="#contact" data-route="contact">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="m4.5 7 7.5 5.5L19.5 7"/></svg>
+          <span data-en="Contact" data-bn="যোগাযোগ">যোগাযোগ</span>
+          <span class="kbd">5</span>
+        </a>
+      </nav>
+
+      <div class="side-foot">
+        <div class="side-status">
+          <span class="dot" aria-hidden="true"></span>
+          <div>
+            <b data-en="Local-first" data-bn="লোকাল-ফার্স্ট">লোকাল-ফার্স্ট</b>
+            <small data-en="Data stays on this device" data-bn="ডেটা এই ডিভাইসেই থাকে">ডেটা এই ডিভাইসেই থাকে</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn hamburger" id="menuBtn" type="button" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+        <div class="page-title">
+          <b id="pageTitle">ড্যাশবোর্ড</b>
+          <small id="pageSub">ওভারভিউ</small>
+        </div>
+
+        <button class="top-search" id="paletteBtn" type="button" aria-label="Open command palette">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span data-en="Search tools, run commands…" data-bn="টুল খুঁজুন, কমান্ড চালান…">টুল খুঁজুন, কমান্ড চালান…</span>
+          <kbd class="kbd">Ctrl K</kbd>
+        </button>
+
+        <div class="top-actions">
+          <button class="icon-btn accent-btn" id="accentBtn" type="button" aria-label="Change accent color" title="Change accent color"><i></i></button>
+          <button class="icon-btn lang-btn" id="langBtn" type="button" aria-label="Switch language">EN</button>
+          <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme" aria-pressed="false">
+            <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+          </button>
+          <button class="avatar" id="avatarBtn" type="button" aria-label="Profile">MP</button>
+        </div>
+      </header>
+
+      <main class="view" id="appView" tabindex="-1">
+        <section class="view-panel" id="viewHome" aria-labelledby="homeTitle">
+          <div class="hero">
+            <div class="hero-copy">
+              <span class="eyebrow" data-en="PERSONAL OPERATING SYSTEM · V2.0" data-bn="পার্সোনাল অপারেটিং সিস্টেম · ভি২.০">পার্সোনাল অপারেটিং সিস্টেম · ভি২.০</span>
+              <h1 id="homeTitle">
+                <span data-en="Build something" data-bn="তৈরি করুন কিছু">তৈরি করুন কিছু</span>
+                <span class="grad" data-en="extraordinary." data-bn="অসাধারণ।">অসাধারণ।</span>
+              </h1>
+              <p data-en="One quiet workspace for the whole stack: curated AI tools, practical playbooks, task tracking, notes and deep-focus sessions — private by default, fast everywhere." data-bn="পুরো কাজের স্ট্যাক এক শান্ত ওয়ার্কস্পেসে: বাছাই করা AI টুল, ব্যবহারিক প্লেবুক, টাস্ক ট্র্যাকিং, নোট ও গভীর মনোযোগের সেশন — ডিফল্টভাবে প্রাইভেট, সব জায়গায় দ্রুত।">পুরো কাজের স্ট্যাক এক শান্ত ওয়ার্কস্পেসে: বাছাই করা AI টুল, ব্যবহারিক প্লেবুক, টাস্ক ট্র্যাকিং, নোট ও গভীর মনোযোগের সেশন — ডিফল্টভাবে প্রাইভেট, সব জায়গায় দ্রুত।</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" type="button" data-goto="tools">
+                  <span data-en="Explore AI tools" data-bn="AI টুলস দেখুন">AI টুলস দেখুন</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+                </button>
+                <button class="btn btn-ghost" type="button" id="openPaletteHero">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  <span data-en="Quick actions" data-bn="কুইক অ্যাকশন">কুইক অ্যাকশন</span>
+                  <kbd class="kbd">/</kbd>
+                </button>
+              </div>
+              <p class="hero-meta"><span id="greeting">শুভ সন্ধ্যা</span><span class="dot-sep" aria-hidden="true"></span><span id="todayLabel"></span></p>
+            </div>
+
+            <aside class="today-card" aria-label="Today">
+              <div class="today-top">
+                <span class="badge badge-gold" data-en="TODAY" data-bn="আজ">আজ</span>
+                <span class="pulse"><i aria-hidden="true"></i><span data-en="Live" data-bn="লাইভ">লাইভ</span></span>
+              </div>
+              <div class="clock" id="liveClock">00:00</div>
+              <p class="clock-date" id="liveDate"></p>
+              <div class="today-rows">
+                <div class="today-row">
+                  <span class="list-ico ico-cyan">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5 6 8.5l3.5-4"/><path d="M12 7h8"/><path d="M4 13.5 6 15.5l3.5-4"/><path d="M12 14h8"/></svg>
+                  </span>
+                  <span data-en="Open tasks" data-bn="বাকি টাস্ক">বাকি টাস্ক</span>
+                  <b id="todayTasks">0</b>
+                </div>
+                <div class="today-row">
+                  <span class="list-ico ico-gold">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4.5l3 2"/></svg>
+                  </span>
+                  <span data-en="Focus minutes" data-bn="ফোকাস মিনিট">ফোকাস মিনিট</span>
+                  <b id="todayFocus">0</b>
+                </div>
+                <div class="today-row">
+                  <span class="list-ico ico-violet">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 4 2.5 5.2 5.5.8-4 3.9.9 5.6L12 16.9 7.1 19.5 8 13.9 4 10l5.5-.8z"/></svg>
+                  </span>
+                  <span data-en="Starred tools" data-bn="স্টার করা টুল">স্টার করা টুল</span>
+                  <b id="todayFavs">0</b>
+                </div>
+              </div>
+              <button class="btn btn-soft btn-block" type="button" data-goto="workspace">
+                <span data-en="Open workspace" data-bn="ওয়ার্কস্পেস খুলুন">ওয়ার্কস্পেস খুলুন</span>
+              </button>
+            </aside>
+          </div>
+
+          <div class="stats reveal">
+            <div class="stat">
+              <span class="label-s" data-en="Curated tools" data-bn="কিউরেটেড টুল">কিউরেটেড টুল</span>
+              <span class="value" id="statTools">36</span>
+              <span class="delta up">+6 v2.0</span>
+            </div>
+            <div class="stat">
+              <span class="label-s" data-en="Starred" data-bn="স্টার করা">স্টার করা</span>
+              <span class="value" id="statFav">0</span>
+              <span class="delta flat" data-en="Saved on device" data-bn="ডিভাইসে সংরক্ষিত">ডিভাইসে সংরক্ষিত</span>
+            </div>
+            <div class="stat">
+              <span class="label-s" data-en="Tasks open" data-bn="খোলা টাস্ক">খোলা টাস্ক</span>
+              <span class="value" id="statTasks">0</span>
+              <span class="delta up" id="statTasksDelta">0 done</span>
+            </div>
+            <div class="stat">
+              <span class="label-s" data-en="Focus today" data-bn="আজকের ফোকাস">আজকের ফোকাস</span>
+              <span class="value" id="statFocus">0m</span>
+              <span class="delta flat" id="statSessions">0 sessions</span>
+            </div>
+          </div>
+
+          <section class="section reveal">
+            <div class="section-head">
+              <div>
+                <span class="kicker" data-en="FEATURED" data-bn="ফিচার্ড">ফিচার্ড</span>
+                <h2 data-en="Your daily stack." data-bn="আপনার ডেইলি স্ট্যাক।">আপনার ডেইলি স্ট্যাক।</h2>
+              </div>
+              <a class="link-btn" href="#tools" data-en="Browse all tools" data-bn="সব টুল দেখুন">সব টুল দেখুন</a>
+            </div>
+            <div class="featured-grid" id="featuredTools"></div>
+          </section>
+
+          <section class="section reveal">
+            <div class="section-head">
+              <div>
+                <span class="kicker" data-en="QUICK START" data-bn="কুইক স্টার্ট">কুইক স্টার্ট</span>
+                <h2 data-en="Three moves, every day." data-bn="প্রতিদিন তিনটি পদক্ষেপ।">প্রতিদিন তিনটি পদক্ষেপ।</h2>
+              </div>
+            </div>
+            <div class="quick-grid">
+              <button class="quick-card" type="button" data-goto="tools">
+                <span class="quick-ico ico-gold"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg></span>
+                <b data-en="Pick a tool" data-bn="টুল বেছে নিন">টুল বেছে নিন</b>
+                <small data-en="Search 36 curated AI tools by task, category or price." data-bn="কাজ, ক্যাটাগরি বা মূল্য দিয়ে ৩৬টি AI টুল খুঁজুন।">কাজ, ক্যাটাগরি বা মূল্য দিয়ে ৩৬টি AI টুল খুঁজুন।</small>
+              </button>
+              <button class="quick-card" type="button" data-goto="workspace" data-tab="tasks">
+                <span class="quick-ico ico-cyan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5 6 8.5l3.5-4"/><path d="M12 7h8"/><path d="M4 13.5 6 15.5l3.5-4"/><path d="M12 14h8"/></svg></span>
+                <b data-en="Plan the day" data-bn="দিনের পরিকল্পনা">দিনের পরিকল্পনা</b>
+                <small data-en="Write the next three actions, then finish them one by one." data-bn="পরের তিনটি কাজ লিখুন, তারপর একে একে শেষ করুন।">পরের তিনটি কাজ লিখুন, তারপর একে একে শেষ করুন।</small>
+              </button>
+              <button class="quick-card" type="button" data-goto="workspace" data-tab="focus">
+                <span class="quick-ico ico-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4.5l3 2"/><path d="M9 2.5h6"/></svg></span>
+                <b data-en="Start a focus session" data-bn="ফোকাস সেশন শুরু">ফোকাস সেশন শুরু</b>
+                <small data-en="25 minutes of single-task work. The timer runs locally." data-bn="২৫ মিনিট একটিমাত্র কাজ। টাইমার লোকালি চলে।">২৫ মিনিট একটিমাত্র কাজ। টাইমার লোকালি চলে।</small>
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <section class="view-panel" id="viewTools" aria-labelledby="toolsTitle" hidden>
+          <div class="section-head">
+            <div>
+              <span class="kicker" data-en="TOOLKIT" data-bn="টুলকিট">টুলকিট</span>
+              <h2 id="toolsTitle" data-en="Find the right tool, faster." data-bn="সঠিক টুলটি দ্রুত খুঁজুন।">সঠিক টুলটি দ্রুত খুঁজুন।</h2>
+            </div>
+            <p data-en="Search by name, tag or category. Star the ones you use, and open any tool in a new tab." data-bn="নাম, ট্যাগ বা ক্যাটাগরি দিয়ে খুঁজুন। যেগুলো ব্যবহার করেন স্টার করুন, আর যেকোনো টুল নতুন ট্যাবে খুলুন।">নাম, ট্যাগ বা ক্যাটাগরি দিয়ে খুঁজুন। যেগুলো ব্যবহার করেন স্টার করুন, আর যেকোনো টুল নতুন ট্যাবে খুলুন।</p>
+          </div>
+
+          <div class="toolbar">
+            <label class="search-box">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input id="toolSearch" type="search" data-en-placeholder="Search 36 tools, tags, categories…" data-bn-placeholder="৩৬টি টুল, ট্যাগ, ক্যাটাগরি খুঁজুন…" placeholder="৩৬টি টুল, ট্যাগ, ক্যাটাগরি খুঁজুন…" autocomplete="off" />
+              <kbd class="kbd">/</kbd>
+            </label>
+            <div class="chips" id="categoryChips"></div>
+            <div class="toolbar-row">
+              <button class="chip" id="favOnlyBtn" type="button" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 4 2.5 5.2 5.5.8-4 3.9.9 5.6L12 16.9 7.1 19.5 8 13.9 4 10l5.5-.8z"/></svg>
+                <span data-en="Starred only" data-bn="শুধু স্টার করা">শুধু স্টার করা</span>
+              </button>
+              <label class="sort-box">
+                <span data-en="Sort" data-bn="সাজান">সাজান</span>
+                <select id="toolSort">
+                  <option value="name" data-en="A–Z" data-bn="অ–হ">অ–হ</option>
+                  <option value="category" data-en="Category" data-bn="ক্যাটাগরি">ক্যাটাগরি</option>
+                  <option value="badge" data-en="Popular first" data-bn="জনপ্রিয় আগে">জনপ্রিয় আগে</option>
+                </select>
+              </label>
+              <span class="tool-count" id="toolCount"></span>
+            </div>
+          </div>
+
+          <div class="grid tool-grid" id="toolGrid"></div>
+          <p class="empty" id="toolEmpty" hidden data-en="No tools match that search yet." data-bn="এই অনুসন্ধানে এখনো কোনো টুল পাওয়া যায়নি।">এই অনুসন্ধানে এখনো কোনো টুল পাওয়া যায়নি।</p>
+        </section>
+
+        <section class="view-panel" id="viewInsights" aria-labelledby="insightsTitle" hidden>
+          <div class="section-head">
+            <div>
+              <span class="kicker" data-en="INSIGHTS" data-bn="ইনসাইটস">ইনসাইটস</span>
+              <h2 id="insightsTitle" data-en="Notes from the workbench." data-bn="কাজের টেবিল থেকে নোট।">কাজের টেবিল থেকে নোট।</h2>
+            </div>
+            <p data-en="Short, practical playbooks on AI, SEO, freelancing, focus and systems — written from real work." data-bn="AI, SEO, ফ্রিল্যান্সিং, মনোযোগ ও সিস্টেম নিয়ে সংক্ষিপ্ত ও ব্যবহারিক প্লেবুক — বাস্তব কাজ থেকে লেখা।">AI, SEO, ফ্রিল্যান্সিং, মনোযোগ ও সিস্টেম নিয়ে সংক্ষিপ্ত ও ব্যবহারিক প্লেবুক — বাস্তব কাজ থেকে লেখা।</p>
+          </div>
+          <div class="chips article-chips" id="articleChips"></div>
+          <div class="grid article-grid" id="articleGrid"></div>
+        </section>
+
+        <section class="view-panel" id="viewWorkspace" aria-labelledby="workspaceTitle" hidden>
+          <div class="section-head">
+            <div>
+              <span class="kicker" data-en="WORKSPACE" data-bn="ওয়ার্কস্পেস">ওয়ার্কস্পেস</span>
+              <h2 id="workspaceTitle" data-en="Your day, under control." data-bn="আপনার দিন, নিয়ন্ত্রণে।">আপনার দিন, নিয়ন্ত্রণে।</h2>
+            </div>
+            <p data-en="Tasks, notes and a focus timer that work fully offline. Everything is saved only on this device." data-bn="টাস্ক, নোট ও ফোকাস টাইমার যা সম্পূর্ণ অফলাইনে কাজ করে। সব কিছু কেবল এই ডিভাইসে সংরক্ষিত হয়।">টাস্ক, নোট ও ফোকাস টাইমার যা সম্পূর্ণ অফলাইনে কাজ করে। সব কিছু কেবল এই ডিভাইসে সংরক্ষিত হয়।</p>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Workspace sections">
+            <button class="tab active" type="button" role="tab" aria-selected="true" data-ws="tasks">
+              <span data-en="Tasks" data-bn="টাস্ক">টাস্ক</span>
+              <span class="tab-badge" id="taskBadge">0</span>
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-ws="notes">
+              <span data-en="Notes" data-bn="নোট">নোট</span>
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-ws="focus">
+              <span data-en="Focus" data-bn="ফোকাস">ফোকাস</span>
+            </button>
+          </div>
+
+          <div class="ws-panel" id="wsTasks" role="tabpanel">
+            <div class="card card-flat">
+              <form class="task-form" id="taskForm" autocomplete="off">
+                <input class="input" id="taskInput" type="text" maxlength="120" data-en-placeholder="Add a task and press Enter…" data-bn-placeholder="একটি টাস্ক লিখে Enter চাপুন…" placeholder="একটি টাস্ক লিখে Enter চাপুন…" aria-label="New task" />
+                <button class="btn btn-primary" type="submit">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  <span data-en="Add" data-bn="যোগ করুন">যোগ করুন</span>
+                </button>
+              </form>
+              <ul class="task-list" id="taskList"></ul>
+              <p class="empty small" id="taskEmpty" hidden data-en="No tasks yet. Add the next small step above." data-bn="এখনো কোনো টাস্ক নেই। উপরে পরের ছোট পদক্ষেপটি যোগ করুন।">এখনো কোনো টাস্ক নেই। উপরে পরের ছোট পদক্ষেপটি যোগ করুন।</p>
+              <div class="task-foot">
+                <div class="task-progress-wrap">
+                  <div class="progress"><i id="taskProgress" style="width:0%"></i></div>
+                  <span id="taskProgressText">0 / 0</span>
+                </div>
+                <button class="btn btn-ghost btn-sm" type="button" id="clearDone">
+                  <span data-en="Clear completed" data-bn="সম্পন্ন মুছুন">সম্পন্ন মুছুন</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ws-panel" id="wsNotes" role="tabpanel" hidden>
+            <div class="note-layout">
+              <form class="card card-flat note-form" id="noteForm">
+                <label class="label" for="noteTitle" data-en="Title" data-bn="শিরোনাম">শিরোনাম</label>
+                <input class="input" id="noteTitle" type="text" maxlength="80" data-en-placeholder="Meeting notes, ideas, links…" data-bn-placeholder="মিটিং নোট, আইডিয়া, লিংক…" placeholder="মিটিং নোট, আইডিয়া, লিংক…" />
+                <label class="label" for="noteBody" data-en="Note" data-bn="নোট">নোট</label>
+                <textarea class="textarea" id="noteBody" rows="7" maxlength="4000" data-en-placeholder="Write it down before it disappears…" data-bn-placeholder="হারিয়ে যাওয়ার আগে লিখে রাখুন…" placeholder="হারিয়ে যাওয়ার আগে লিখে রাখুন…"></textarea>
+                <div class="note-form-foot">
+                  <button class="btn btn-primary" type="submit">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h13v16l-6.5-4L5 20z"/></svg>
+                    <span data-en="Save note" data-bn="নোট সংরক্ষণ">নোট সংরক্ষণ</span>
+                  </button>
+                  <span class="note-status" id="noteStatus"></span>
+                </div>
+              </form>
+              <div class="note-side">
+                <div class="section-head compact">
+                  <h3 data-en="Saved notes" data-bn="সংরক্ষিত নোট">সংরক্ষিত নোট</h3>
+                  <span class="tool-count" id="noteCount">0</span>
+                </div>
+                <div class="note-list" id="noteList"></div>
+                <p class="empty small" id="noteEmpty" hidden data-en="No notes yet. Your first note is one sentence away." data-bn="এখনো কোনো নোট নেই। প্রথম নোট এক বাক্য দূরেই।">এখনো কোনো নোট নেই। প্রথম নোট এক বাক্য দূরেই।</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ws-panel" id="wsFocus" role="tabpanel" hidden>
+            <div class="focus-layout">
+              <div class="card card-flat timer-card">
+                <div class="timer-modes" role="group" aria-label="Timer mode">
+                  <button class="chip active" type="button" data-mode="focus" data-minutes="25">
+                    <span data-en="Focus 25" data-bn="ফোকাস ২৫">ফোকাস ২৫</span>
+                  </button>
+                  <button class="chip" type="button" data-mode="break" data-minutes="5">
+                    <span data-en="Break 5" data-bn="বিরতি ৫">বিরতি ৫</span>
+                  </button>
+                </div>
+                <div class="timer-ring">
+                  <svg viewBox="0 0 200 200" aria-hidden="true">
+                    <circle class="ring-track" cx="100" cy="100" r="86" />
+                    <circle class="ring-fill" id="timerRingFg" cx="100" cy="100" r="86" />
+                  </svg>
+                  <div class="timer-center">
+                    <b id="timerLabel">25:00</b>
+                    <span id="timerModeLabel" data-en="Ready to focus" data-bn="ফোকাসের জন্য প্রস্তুত">ফোকাসের জন্য প্রস্তুত</span>
+                  </div>
+                </div>
+                <div class="timer-actions">
+                  <button class="btn btn-primary" type="button" id="timerStart">
+                    <span id="timerStartLabel" data-en="Start" data-bn="শুরু">শুরু</span>
+                  </button>
+                  <button class="btn btn-ghost" type="button" id="timerReset">
+                    <span data-en="Reset" data-bn="রিসেট">রিসেট</span>
+                  </button>
+                </div>
+                <p class="focus-today" id="focusToday"></p>
+              </div>
+              <div class="card card-flat focus-tips">
+                <span class="kicker" data-en="RULES OF FOCUS" data-bn="মনোযোগের নিয়ম">মনোযোগের নিয়ম</span>
+                <ul>
+                  <li data-en="One task per session. Write it down before starting." data-bn="প্রতি সেশনে একটিমাত্র কাজ। শুরুর আগে লিখে নিন।">প্রতি সেশনে একটিমাত্র কাজ। শুরুর আগে লিখে নিন।</li>
+                  <li data-en="Close every tab and app you do not need right now." data-bn="এই মুহূর্তে দরকার নেই এমন সব ট্যাব ও অ্যাপ বন্ধ করুন।">এই মুহূর্তে দরকার নেই এমন সব ট্যাব ও অ্যাপ বন্ধ করুন।</li>
+                  <li data-en="After 25 minutes, stand up and look far away for 5." data-bn="২৫ মিনিট পর দাঁড়ান ও ৫ মিনিট দূরে তাকান।">২৫ মিনিট পর দাঁড়ান ও ৫ মিনিট দূরে তাকান।</li>
+                  <li data-en="Finish the session before checking messages." data-bn="বার্তা চেক করার আগে সেশনটি শেষ করুন।">বার্তা চেক করার আগে সেশনটি শেষ করুন।</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="ws-tools-row">
+            <button class="btn btn-ghost btn-sm" type="button" id="exportData">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+              <span data-en="Export data" data-bn="ডেটা এক্সপোর্ট">ডেটা এক্সপোর্ট</span>
+            </button>
+            <button class="btn btn-ghost btn-sm danger" type="button" id="resetData">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13h10l1-13"/></svg>
+              <span data-en="Reset workspace" data-bn="ওয়ার্কস্পেস রিসেট">ওয়ার্কস্পেস রিসেট</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="view-panel" id="viewContact" aria-labelledby="contactTitle" hidden>
+          <div class="section-head">
+            <div>
+              <span class="kicker" data-en="CONTACT" data-bn="যোগাযোগ">যোগাযোগ</span>
+              <h2 id="contactTitle" data-en="Let’s build something together." data-bn="চলুন একসাথে কিছু তৈরি করি।">চলুন একসাথে কিছু তৈরি করি।</h2>
+            </div>
+            <p data-en="Tell me what you need. The message opens in WhatsApp or your email app — nothing is stored on this site." data-bn="আপনার প্রয়োজনটি বলুন। বার্তাটি WhatsApp বা ইমেইল অ্যাপে খুলবে — এই সাইটে কিছু সংরক্ষিত হয় না।">আপনার প্রয়োজনটি বলুন। বার্তাটি WhatsApp বা ইমেইল অ্যাপে খুলবে — এই সাইটে কিছু সংরক্ষিত হয় না।</p>
+          </div>
+
+          <div class="contact-layout">
+            <form class="card card-flat contact-form" id="contactForm">
+              <div class="contact-fields">
+                <label>
+                  <span data-en="Name" data-bn="নাম">নাম</span>
+                  <input class="input" type="text" name="name" id="cName" data-en-placeholder="Your name" data-bn-placeholder="আপনার নাম" placeholder="আপনার নাম" required />
+                </label>
+                <label>
+                  <span data-en="Email" data-bn="ইমেইল">ইমেইল</span>
+                  <input class="input" type="email" name="email" id="cEmail" data-en-placeholder="you@example.com" data-bn-placeholder="you@example.com" placeholder="you@example.com" required />
+                </label>
+                <label class="wide">
+                  <span data-en="What do you need?" data-bn="আপনার কী দরকার?">আপনার কী দরকার?</span>
+                  <select class="select" name="need" id="cNeed">
+                    <option value="SEO & digital marketing" data-en="SEO & digital marketing" data-bn="SEO ও ডিজিটাল মার্কেটিং">SEO ও ডিজিটাল মার্কেটিং</option>
+                    <option value="Website development" data-en="Website development" data-bn="ওয়েবসাইট ডেভেলপমেন্ট">ওয়েবসাইট ডেভেলপমেন্ট</option>
+                    <option value="YouTube & video" data-en="YouTube & video" data-bn="ইউটিউব ও ভিডিও">ইউটিউব ও ভিডিও</option>
+                    <option value="Teaching & training" data-en="Teaching & training" data-bn="শিক্ষাদান ও প্রশিক্ষণ">শিক্ষাদান ও প্রশিক্ষণ</option>
+                    <option value="AI tools & automation" data-en="AI tools & automation" data-bn="AI টুল ও অটোমেশন">AI টুল ও অটোমেশন</option>
+                  </select>
+                </label>
+                <label class="wide">
+                  <span data-en="Message" data-bn="বার্তা">বার্তা</span>
+                  <textarea class="textarea" name="message" id="cMsg" rows="5" data-en-placeholder="Tell me a little about your project…" data-bn-placeholder="আপনার প্রোজেক্ট সম্পর্কে বলুন…" placeholder="আপনার প্রোজেক্ট সম্পর্কে বলুন…" required></textarea>
+                </label>
+              </div>
+              <div class="form-actions">
+                <button type="button" class="btn btn-primary" id="sendWhatsApp">
+                  <span data-en="Send on WhatsApp" data-bn="WhatsApp-এ পাঠান">WhatsApp-এ পাঠান</span>
+                </button>
+                <button type="button" class="btn btn-ghost" id="sendEmail">
+                  <span data-en="Send by email" data-bn="ইমেইলে পাঠান">ইমেইলে পাঠান</span>
+                </button>
+              </div>
+              <p class="form-status" id="formStatus" role="status"></p>
+            </form>
+
+            <aside class="contact-side">
+              <a class="contact-card" href="mailto:Polash@programmer.net">
+                <span class="quick-ico ico-gold"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="m4.5 7 7.5 5.5L19.5 7"/></svg></span>
+                <b data-en="Email" data-bn="ইমেইল">ইমেইল</b>
+                <small>Polash@programmer.net</small>
+              </a>
+              <a class="contact-card" href="https://wa.me/8801723328481" target="_blank" rel="noopener">
+                <span class="quick-ico ico-cyan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.2A8 8 0 1 1 20 11.5z"/><path d="M9 9.5c.4 2.4 3.1 5 5.5 5.5"/></svg></span>
+                <b data-en="WhatsApp" data-bn="WhatsApp">WhatsApp</b>
+                <small>+880 1723 328481</small>
+              </a>
+              <a class="contact-card" href="https://github.com/MIPolash-Prog" target="_blank" rel="noopener">
+                <span class="quick-ico ico-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.2-4-2-5.5-2.5M14.5 21v-3.4c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.7 4.7 0 0 0-1.2-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.3 1.2a11 11 0 0 0-5.8 0C6.8 2.9 5.8 3.2 5.8 3.2a4.3 4.3 0 0 0-.1 3.2A4.7 4.7 0 0 0 4.5 9.6c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span>
+                <b data-en="GitHub" data-bn="GitHub">GitHub</b>
+                <small>MIPolash-Prog</small>
+              </a>
+              <div class="contact-card static">
+                <span class="quick-ico ico-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+                <b data-en="Based in" data-bn="অবস্থান">অবস্থান</b>
+                <small data-en="Dhaka, Bangladesh · Working worldwide" data-bn="ঢাকা, বাংলাদেশ · বিশ্বজুড়ে কাজ">ঢাকা, বাংলাদেশ · বিশ্বজুড়ে কাজ</small>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <span>© <span id="year"></span> Polash AI OS · <span data-en="Local-first by design" data-bn="লোকাল-ফার্স্ট ডিজাইন">লোকাল-ফার্স্ট ডিজাইন</span></span>
+          <div class="footer-links">
+            <a href="#home" data-en="Home" data-bn="হোম">হোম</a>
+            <a href="#tools" data-en="Tools" data-bn="টুলস">টুলস</a>
+            <a href="#workspace" data-en="Workspace" data-bn="ওয়ার্কস্পেস">ওয়ার্কস্পেস</a>
+            <a href="https://github.com/MIPolash-Prog" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <div class="modal-root" id="modalRoot" aria-hidden="true"></div>
+
+  <div class="palette-root" id="paletteRoot" aria-hidden="true">
+    <div class="palette" role="dialog" aria-modal="true" aria-label="Command palette">
+      <div class="palette-input">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="paletteInput" type="text" autocomplete="off" spellcheck="false" data-en-placeholder="Search tools or type a command…" data-bn-placeholder="টুল খুঁজুন বা কমান্ড লিখুন…" placeholder="টুল খুঁজুন বা কমান্ড লিখুন…" aria-label="Command palette input" />
+        <kbd class="kbd">Esc</kbd>
+      </div>
+      <div class="palette-list" id="paletteList"></div>
+      <div class="palette-foot">
+        <span>↑↓</span>
+        <span data-en="navigate" data-bn="নেভিগেট">নেভিগেট</span>
+        <span>↵</span>
+        <span data-en="open" data-bn="ওপেন">ওপেন</span>
+        <span>Esc</span>
+        <span data-en="close" data-bn="বন্ধ">বন্ধ</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="smart.js"></script>
+</body>
+</html>
